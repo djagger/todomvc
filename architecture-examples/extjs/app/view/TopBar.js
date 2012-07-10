@@ -10,7 +10,8 @@ Ext.define('Todo.view.TopBar', {
     items:[
         {
             xtype:'checkbox',
-            cls:'check-all'
+            cls:'check-all',
+            inputAttrTpl:'value="»"'
         },
         {
             xtype:'textfield',
