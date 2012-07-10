@@ -22,8 +22,9 @@ Ext.define('Todo.view.List', {
                 if (value) {
                     meta.tdCls = 'checked'
                 }
+                return '✔';
             },
-            width:40
+            width:44
         },
         {
             text:'Title',

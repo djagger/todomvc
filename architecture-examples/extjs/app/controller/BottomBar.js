@@ -1,6 +1,5 @@
 Ext.define('Todo.controller.BottomBar', {
     extend:'Ext.app.Controller',
-    /*models:['Task'],*/
     stores:['Tasks'],
     refs:[
         {ref:'bottomBar', selector:'todo_bottombar'},

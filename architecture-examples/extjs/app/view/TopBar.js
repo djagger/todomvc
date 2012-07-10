@@ -6,7 +6,7 @@ Ext.define('Todo.view.TopBar', {
     ],
     alias:'widget.todo_topbar',
     cls:'todo-app-tbar',
-    border: '20 0 0 0',
+    border: '16 0 0 0',
     items:[
         {
             xtype:'checkbox',

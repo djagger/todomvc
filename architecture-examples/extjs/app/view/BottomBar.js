@@ -4,7 +4,7 @@ Ext.define('Todo.view.BottomBar', {
     alias:'widget.todo_bottombar',
     cls:'todo-app-bbar',
     hidden:true,
-    height:33,
+    //height:33,
     items:[
         {
             xtype:'box',

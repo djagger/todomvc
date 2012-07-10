@@ -15,7 +15,12 @@ Ext.define('Todo.controller.List', {
             this.getStore('Tasks').remove(record);
         }
         if (event.getTarget('.checkcolumn')) {
-            record.set('completed', ! record.get('completed'));
+            var completed = !record.get('completed');
+            record.editing = true;
+            record.set('completed', completed);
+            record.editing = false;
+            record.store.filter();
+            record.save();
         }
     },
     //In-place label edit.

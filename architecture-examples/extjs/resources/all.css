@@ -25,28 +25,40 @@ tr.x-grid-row-focused td.delete-icon .x-grid-cell-inner {
     transform: scale(1.3);
 }
 
+.check-all {
+    border-right: 4px double #f5d6d6;
+    width:44px;
+    height: 59px;
+}
 .check-all .x-form-cb-wrap {
-    padding: 22px 12px;
     text-align: center;
-    border-right: double #f5d6d6;
+}
+.check-all input {
+    background-image: url('check-all.png');
+    width:16px;
+    height:16px;
 }
 
-.check-all .x-form-cb-wrap input {
-    vertical-align: 1px;
+.check-all.x-form-cb-checked input {
+    background-position: -16px 0;
 }
 
 .todo-app-list .checkcolumn {
-    border-right: double #f5d6d6;
+    border-right: 4px double #f5d6d6;
+    padding-left:4px;
     text-align: center;
 }
 .todo-app-list .checkcolumn .x-grid-cell-inner {
     display: inline-block;
-    width: 13px;
-    height: 13px;
-    background: url("checkbox.gif") no-repeat;
+    width: auto;
+    height: auto;
+    font-size: 20px;
+    color: #d9d9d9;
+    text-shadow: 0 -1px 0 #bfbfbf;
 }
 .todo-app-list .checkcolumn.checked .x-grid-cell-inner {
-    background-position: 0px -13px;
+    color: #85ada7;
+    text-shadow: 0 1px 0 #669991;
 }
 
 .x-form-checkbox, .x-form-radio {
@@ -69,7 +81,7 @@ tr.x-grid-row-focused td.delete-icon .x-grid-cell-inner {
 /*Styles just to match*/
 
 .todo-app {
-    background: #eeeeee url('../../../assets/bg.png');
+    background: #eaeaea url('../../../assets/bg.png');
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -104,21 +116,22 @@ tr.x-grid-row-focused td.delete-icon .x-grid-cell-inner {
     background: transparent;
 }
 
-#todoapp .todo-text-input .x-form-text::-webkit-input-placeholder {
+.todo-app .todo-text-input .x-form-text::-webkit-input-placeholder {
     font-style: italic;
 }
 
-#todoapp .todo-text-input .x-form-text:-moz-placeholder {
+.todo-app .todo-text-input .x-form-text:-moz-placeholder {
     font-style: italic;
     color: #a9a9a9;
 }
 
 .todo-app-list {
-    box-shadow: 0 25px 50px 0 rgba(0, 0, 0, 0.15);
+    margin:auto;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2),
+                0 25px 50px 0 rgba(0, 0, 0, 0.15);
     border: none;
 }
 .todo-app-list .x-grid-body {
-    box-shadow: 0px 20px 15px 15px rgba(0, 0, 0, 0.08);
     border: none;
 }
 
@@ -138,12 +151,27 @@ tr.x-grid-row-focused td.delete-icon .x-grid-cell-inner {
 }
 
 .todo-app-bbar {
+    margin:auto;
+    position:relative;
     font-size: 14px;
-    background: rgba(255, 255, 255, 0.5);
+    background: transparent;
+    /*background: rgba(255, 255, 255, 0.9);*/
     border: none;
     color: #83756F;
-    margin: 0 7px;
-    padding: 3px 8px;
+    padding: 10px 15px;
+}
+.todo-app-bbar:before {
+    position:absolute;
+    content:'';
+    right: 0;
+    bottom: 42px;
+    left: 0;
+    height: 100px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3),
+                0 6px 0 -3px rgba(255, 255, 255, 0.8),
+                0 7px 1px -3px rgba(0, 0, 0, 0.3),
+                0 43px 0 -6px rgba(255, 255, 255, 0.8),
+                0 44px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
 .todo-app-bbar strong {
@@ -158,12 +186,15 @@ tr.x-grid-row-focused td.delete-icon .x-grid-cell-inner {
     background: rgba(0, 0, 0, 0.1);
     border-color: transparent;
     border-radius: 3px;
-    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1) inset;
 }
 
 .todo-app-bbar .hidden.x-btn {
     background: transparent;
     box-shadow: none;
+}
+.todo-app-bbar .hidden .x-btn-inner {
+    color: transparent !important;
 }
 
 .todo-app-bbar .x-btn-inner {
@@ -171,13 +202,9 @@ tr.x-grid-row-focused td.delete-icon .x-grid-cell-inner {
     color: #777777;
 }
 
-.todo-app-bbar .hidden .x-btn-inner {
-    color: transparent !important;
-}
-
 .todo-app-bbar .x-btn.x-btn-over {
     background: rgba(0, 0, 0, 0.15);
-    box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2) inset;
 }
 
 footer {

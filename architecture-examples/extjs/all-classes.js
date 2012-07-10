@@ -64264,7 +64264,12 @@ Ext.define('Todo.controller.List', {
             this.getStore('Tasks').remove(record);
         }
         if (event.getTarget('.checkcolumn')) {
-            record.set('completed', ! record.get('completed'));
+            var completed = !record.get('completed');
+            record.editing = true;
+            record.set('completed', completed);
+            record.editing = false;
+            record.store.filter();
+            record.save();
         }
     },
     //In-place label edit.
@@ -64704,7 +64709,7 @@ Ext.define('Todo.view.BottomBar', {
     alias:'widget.todo_bottombar',
     cls:'todo-app-bbar',
     hidden:true,
-    height:33,
+    //height:33,
     items:[
         {
             xtype:'box',
@@ -72350,7 +72355,7 @@ Ext.define('Todo.view.TopBar', {
     ],
     alias:'widget.todo_topbar',
     cls:'todo-app-tbar',
-    border: '20 0 0 0',
+    border: '16 0 0 0',
     items:[
         {
             xtype:'checkbox',
@@ -72985,13 +72990,13 @@ Ext.define('Todo.model.Task', {
 
 Ext.define('Todo.store.Tasks', {
 	autoLoad: true,
+	autoSync: true,
 	model: 'Todo.model.Task',
 	extend: 'Ext.data.Store'
 });
 
 Ext.define('Todo.controller.BottomBar', {
     extend:'Ext.app.Controller',
-    /*models:['Task'],*/
     stores:['Tasks'],
     refs:[
         {ref:'bottomBar', selector:'todo_bottombar'},
@@ -80866,8 +80871,9 @@ Ext.define('Todo.view.List', {
                 if (value) {
                     meta.tdCls = 'checked'
                 }
+                return '✔';
             },
-            width:40
+            width:44
         },
         {
             text:'Title',
@@ -80898,51 +80904,29 @@ Ext.define('Todo.view.List', {
 Ext.define('Todo.view.Viewport', {
     extend:'Ext.container.Viewport',
     requires:[
-        'Ext.layout.container.Column',
-        'Ext.layout.container.Anchor',
         'Todo.view.TopBar',
         'Todo.view.List',
         'Todo.view.BottomBar'
     ],
-    layout:'column',
     items:[
         {
-            //Left spacer
             xtype:'box',
-            columnWidth:0.25,
-            html:'&nbsp;'
+            autoEl:{
+                tag:'h1',
+                html:'todos'
+            }
         },
         {
-            xtype:'container',
-            layout:'anchor',
-            defaults:{anchor:'100%'},
-            columnWidth:0.5,
-            items:[
-                {
-                    xtype:'box',
-                    autoEl:{
-                        tag:'h1',
-                        html:'todos'
-                    }
-                },
-                {
-                    xtype:'todo_list',
-                    dockedItems:[
-                        {xtype:'todo_topbar', dock:'top'},
-                        {xtype:'todo_bottombar', dock:'bottom'}
-                    ]
-                },
-                {
-                    xtype:'box',
-                    contentEl:'footer'
-                }
+            xtype:'todo_list',
+            width:550,
+            dockedItems:[
+                {xtype:'todo_topbar', dock:'top'}
             ]
         },
+        {xtype:'todo_bottombar', width:550},
         {
-            //Right spacer
             xtype:'box',
-            columnWidth:0.25,
-            html:'&nbsp;'
+            contentEl:'footer'
         }
     ]
 });
