@@ -31,19 +31,18 @@ tr.x-grid-row-focused td.delete-icon .x-grid-cell-inner {
     height: 59px;
 }
 .check-all .x-form-cb-wrap {
-    padding-left:7px;
+    padding-left:17px;
     text-align: center;
 }
-.x-gecko .check-all .x-form-cb-wrap,
-.x-ie .check-all .x-form-cb-wrap {
-    padding-left:17px;
+.x-opera .check-all .x-form-cb-wrap {
+    padding-left:7px;
 }
 .check-all input {
     background: transparent;
     font-size: 36px;
     color: #d9d9d9;
     width:23px;
-    height:23px;
+    height:34px;
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
@@ -54,10 +53,6 @@ tr.x-grid-row-focused td.delete-icon .x-grid-cell-inner {
     -ms-appearance: none;
     -o-appearance: none;
     appearance: none;
-}
-.x-gecko .check-all input,
-.x-ie .check-all input {
-    height:34px;
 }
 
 .check-all.x-form-cb-checked input {
