@@ -64715,7 +64715,7 @@ Ext.define('Todo.view.BottomBar', {
             xtype:'box',
             itemId:'uncompleted',
             flex:1,
-            tpl:Ext.create('Ext.Template', '<strong>{count:plural("item")}</strong> left.'),
+            tpl:Ext.create('Ext.Template', '<strong>{count}</strong> item{suffix} left.'),
             data:{count:0}
         },
         {
@@ -73036,9 +73036,13 @@ Ext.define('Todo.controller.BottomBar', {
         store.remove(records);
     },
     onCountUpdate:function(total, completed) {
-        var completedButton = this.getButtonCompleted();
+        var completedButton = this.getButtonCompleted(),
+            left = total - completed;
         this.getBottomBar().setVisible(!!total);
-        this.getTextUncompleted().update({count:total - completed});
+        this.getTextUncompleted().update({
+            count:left,
+            suffix:(left % 10 == 1) && (left % 100 != 11) ? 's' : ''
+        });
         completedButton
             [completed ? 'removeCls' : 'addCls']('hidden')
             .setDisabled(!completed)
