@@ -38,9 +38,13 @@ Ext.define('Todo.controller.BottomBar', {
         store.remove(records);
     },
     onCountUpdate:function(total, completed) {
-        var completedButton = this.getButtonCompleted();
+        var completedButton = this.getButtonCompleted(),
+            left = total - completed;
         this.getBottomBar().setVisible(!!total);
-        this.getTextUncompleted().update({count:total - completed});
+        this.getTextUncompleted().update({
+            count:left,
+            suffix:(left % 10 == 1) && (left % 100 != 11) ? 's' : ''
+        });
         completedButton
             [completed ? 'removeCls' : 'addCls']('hidden')
             .setDisabled(!completed)

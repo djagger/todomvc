@@ -10,7 +10,7 @@ Ext.define('Todo.view.BottomBar', {
             xtype:'box',
             itemId:'uncompleted',
             flex:1,
-            tpl:Ext.create('Ext.Template', '<strong>{count:plural("item")}</strong> left.'),
+            tpl:Ext.create('Ext.Template', '<strong>{count}</strong> item{suffix} left.'),
             data:{count:0}
         },
         {
