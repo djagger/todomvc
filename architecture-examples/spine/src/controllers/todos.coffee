@@ -8,7 +8,7 @@ class window.Todos extends Spine.Controller
 	events:
 		'click    .destroy': 'remove'
 		'click    .toggle':  'toggleStatus'
-		'dblclick .view':    'edit'
+		'dblclick label':    'edit'
 		'keyup    .edit':    'finishEditOnEnter'
 		'blur     .edit':    'finishEdit'
 
@@ -29,7 +29,7 @@ class window.Todos extends Spine.Controller
 
 	edit: ->
 		@el.addClass 'editing'
-		@editElem.focus()
+		@editElem.val(@editElem.val()).focus()
 
 	finishEdit: ->
 		@el.removeClass 'editing'

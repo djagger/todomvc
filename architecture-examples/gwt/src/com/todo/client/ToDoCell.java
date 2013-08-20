@@ -20,9 +20,9 @@ import com.google.gwt.safehtml.shared.SafeHtmlUtils;
  * A cell that renders {@link ToDoItem} instances. This cell is rendered in both view and edit modes
  * based on user interaction. In edit mode, browser events are handled in order to update the model
  * item state.
- * 
+ *
  * @author ceberhardt
- * 
+ *
  */
 public class ToDoCell extends AbstractCell<ToDoItem> {
 
@@ -82,7 +82,7 @@ public class ToDoCell extends AbstractCell<ToDoItem> {
 		} else {
 			SafeHtml rendered =
 					templates.view(value.isDone() ? templates.inputChecked() : templates.inputClear(),
-							SafeHtmlUtils.fromString(value.getTitle()), value.isDone() ? "listItem view done"
+							SafeHtmlUtils.fromString(value.getTitle()), value.isDone() ? "listItem view completed"
 									: "listItem view",
 							// NOTE: The addition of a timestamp here is a bit of a HACK! The problem
 							// is that the CellList uses a HasDataPresenter for rendering. This class
@@ -139,7 +139,6 @@ public class ToDoCell extends AbstractCell<ToDoItem> {
 				beginningEdit = true;
 				InputElement input = getInputElement(parent);
 				input.focus();
-				input.select();
 				beginningEdit = false;
 			}
 
@@ -159,9 +158,9 @@ public class ToDoCell extends AbstractCell<ToDoItem> {
 
 					// update the 'row' style
 					if (input.isChecked()) {
-						getViewRootElement(parent).addClassName("done");
+						getViewRootElement(parent).addClassName("completed");
 					} else {
-						getViewRootElement(parent).removeClassName("done");
+						getViewRootElement(parent).removeClassName("completed");
 					}
 
 				} else if (tagName.equals("BUTTON")) {

@@ -1,6 +1,8 @@
+/*global goog, mvc, soy, todomvc */
 goog.provide('todomvc.todocontrol');
 
 goog.require('goog.dom');
+goog.require('goog.string');
 goog.require('goog.events.KeyCodes');
 goog.require('mvc.Control');
 goog.require('todomvc.templates');
@@ -15,7 +17,6 @@ goog.require('todomvc.templates');
  */
 todomvc.todocontrol = function( model ) {
 	goog.base( this, model );
-
 };
 goog.inherits( todomvc.todocontrol, mvc.Control );
 
@@ -27,10 +28,7 @@ goog.inherits( todomvc.todocontrol, mvc.Control );
  * @inheritDoc
  */
 todomvc.todocontrol.prototype.createDom = function() {
-	var el = soy.renderAsFragment( todomvc.templates.todoItem, {
-		model: this.getModel().toJson()
-	}, null );
-
+	var el = soy.renderAsElement( todomvc.templates.todoItem, null, null );
 	this.setElementInternal(/** @type {Element} */(el));
 };
 
@@ -45,31 +43,51 @@ todomvc.todocontrol.prototype.enterDocument = function() {
 	var model = this.getModel();
 
 	// Toggle complete
-	this.click(function( e ) {
-			model.set( 'completed', e.target.checked );
-	}, 'toggle' );
+	this.autobind('.toggle', '{$completed}');
+
+	// Change li class on completion
+	this.autobind('', {
+		reqs: ['completed'],
+		onClass: 'completed',
+		noClick: true
+	});
 
 	// Delete the model
-	this.click(function( e ) {
+	this.click(function() {
 		model.dispose();
-	}, 'destroy' );
+	}, '.destroy');
+
+	// keep label inline with title
+	this.autobind( 'label', {
+		reqs: ['title'],
+		template: function (data) { return data.title; },
+		data: {
+			title: function (control) {
+				var value = control.getModel().get('title');
+				return goog.string.htmlEscape(value);
+			}
+		}
+	});
 
 	var inputEl = this.getEls('.edit')[0];
 	// Dblclick to edit
-	this.on( goog.events.EventType.DBLCLICK, function( e ) {
+	this.on( goog.events.EventType.DBLCLICK, function() {
 		goog.dom.classes.add( this.getElement(), 'editing' );
-		inputEl.value = model.get('title');
-		inputEl.select();
-	}, 'view' );
+		inputEl.focus();
+	}, '.view');
 
-	// Save on edit
+	// blur on enter
 	this.on( goog.events.EventType.KEYUP, function( e ) {
 		if ( e.keyCode === goog.events.KeyCodes.ENTER ) {
-			model.set( 'title', inputEl.value );
+			e.target.blur();
 		}
-	}, 'edit' );
+	});
 
-	this.on( goog.events.EventType.BLUR, function( e ) {
-		model.set( 'title', inputEl.value );
-	}, 'edit' );
+	// finish editing on blur
+	this.on( goog.events.EventType.BLUR, function() {
+		goog.dom.classes.remove( this.getElement(), 'editing' );
+	});
+
+	// bind the title and the edit input
+	this.autobind( '.edit', '{$title}' );
 };
