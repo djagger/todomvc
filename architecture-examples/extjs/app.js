@@ -1,11 +1,16 @@
-Ext.Loader.setConfig({enabled:true});
+/*
+    This file is generated and updated by Sencha Cmd. You can edit this file as
+    needed for your application, but these edits will have to be merged by
+    Sencha Cmd when upgrading.
+*/
+
+// DO NOT DELETE - this directive is required for Sencha Cmd packages to work.
+//@require @packageOverrides
 
 Ext.application({
-    name:'Todo',
-    appFolder:'app',
-    autoCreateViewport:true,
-    controllers:['TopBar', 'List', 'BottomBar', 'History'],
-    launch:function() {
+    name: 'Todo',
 
-    }
+    extend: 'Todo.Application',
+    
+    autoCreateViewport: true
 });

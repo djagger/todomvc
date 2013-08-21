@@ -1,0 +1,78 @@
+.todo-app-bbar {
+	margin: auto;
+	position: relative;
+	font-size: 14px;
+	background: transparent;
+	/*background: rgba(255, 255, 255, 0.9);*/
+	border: none;
+	color: #83756F;
+	padding: $bottom-bar-padding-y $bottom-bar-padding-x;
+	overflow: hidden;
+	&::before {
+		position: absolute;
+		content: '';
+		right: 0;
+		bottom: 40px;
+		left: 0;
+		height: 100px;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3),
+					0 6px 0 -3px rgba(255, 255, 255, 0.8),
+					0 7px 1px -3px rgba(0, 0, 0, 0.3),
+					0 43px 0 -6px rgba(255, 255, 255, 0.8),
+					0 44px 2px -6px rgba(0, 0, 0, 0.2);
+	}
+	.counts {
+		position: absolute;
+		top: $bottom-bar-padding-y;
+		left: $bottom-bar-padding-x;
+	}
+	.x-btn {
+		position: absolute;
+		top: $bottom-bar-padding-y;
+		right: $bottom-bar-padding-x;
+		padding: 0 6px;
+		background: rgba(0, 0, 0, 0.1);
+		border: {
+			width: 0;
+			color: transparent;
+			radius: 3px;
+		}
+		box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1) inset;
+		&.hidden {
+			background: transparent;
+			box-shadow: none;
+		}
+		.x-btn-button {
+			height:auto;
+		}
+		&.x-btn-over {
+			background: rgba(0, 0, 0, 0.15);
+			box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2) inset;
+		}
+	}
+	.x-btn-inner {
+		font-size: 11px;
+		line-height: 20px;
+		color: #777777;
+	}
+	.hidden .x-btn-inner {
+		color: transparent !important;
+	}
+}
+
+.filters {
+	position: relative;
+	left: 0;
+	right: 0;
+	text-align: center;
+	a {
+		color: #83756F;
+		text-decoration: none;
+		& + a {
+			padding-left: 8px;
+		}
+		&.selected {
+			font-weight: 700;
+		}
+	}
+}

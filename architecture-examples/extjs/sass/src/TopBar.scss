@@ -1,0 +1,57 @@
+.check-all {
+	border-right: 4px double #f5d6d6;
+	width: 44px;
+	.x-form-cb-wrap {
+		text-align: center;
+		vertical-align: middle;
+	}
+	input {
+		position: relative;
+		width: 16px;
+		height: 16px;
+		background: theme-background-image('check-all', 'png');
+		@include experimental(appearance, none);
+	}
+	&.x-form-cb-checked input {
+		background-position: -16px 0;
+	}
+}
+
+.todo-app-tbar {
+	border: none;
+	background: rgba(255, 255, 255, 0.65);
+	padding: 16px 0 0 0;
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		height: 15px;
+		border-bottom: 1px solid #6c615c;
+		@include background-image(linear-gradient(top, color-stops(
+				rgba(132, 110, 100, 0.8),
+				rgba(101, 84, 76, 0.8)
+		)));
+		background-image: linear-gradient(180deg, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
+		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#9d8b83', EndColorStr='#847670');
+		border-top-left-radius: 1px;
+		border-top-right-radius: 1px;
+	}
+	.todo-text-input .x-form-text {
+		font-size: $todo-text-font-size;
+		padding: $todo-text-padding+1px $todo-text-padding+1px $todo-text-padding+1px 10px;
+		height: auto;
+		line-height: 1.4em;
+		border: none;
+		background: transparent;
+		margin: 0;
+		&::-webkit-input-placeholder {
+			font-style: italic;
+		}
+		&::-moz-placeholder {
+			font-style: italic;
+			color: #a9a9a9;
+		}
+	}
+}

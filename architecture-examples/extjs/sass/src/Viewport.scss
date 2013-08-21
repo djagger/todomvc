@@ -1,0 +1,39 @@
+.x-viewport {
+	overflow-y: auto;
+}
+
+.todo-app {
+	background: #eaeaea theme-background-image('bg', 'png');
+	font: 14px/1.4em $font-family;
+	width: auto;
+
+	h1 {
+		text-align: center;
+		font: {
+			weight: bold;
+			size: 70px;
+		}
+		line-height: 1.4em;
+		margin: 0 auto;
+		padding: 30px 0 2px 0;
+		color: #b3b3b3;
+		color: rgba(255, 255, 255, 0.3);
+		text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+		@include experimental(text-rendering, optimizeLegibility);
+	}
+}
+
+@media (min-width: 899px) {
+	.todo-app.learn-bar {
+		padding-left: 300px;
+	}
+}
+
+.learn {
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+#info {
+	margin: 26px auto 0px;
+}

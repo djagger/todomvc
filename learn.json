@@ -835,15 +835,15 @@
 			"heading": "Official Resources",
 			"links": [{
 				"name": "Documentation",
-				"url": "http://docs.sencha.com/extjs/4.2.0"
+				"url": "http://docs-origin.sencha.com/extjs/4.2.1/"
 			}, {
 				"name": "API Reference",
-				"url": "http://docs.sencha.com/extjs/4.1.3"
+				"url": "http://docs.sencha.com/extjs/4.2.1/#!/api"
 			}, {
 				"name": "Tutorials, Screencasts, Guides, FAQs",
 				"url": "http://www.sencha.com/learn/extjs"
 			}, {
-				"name": "Applications built with Ext JS",
+				"name": "Ext JS Examples",
 				"url": "http://docs.sencha.com/extjs/4.2.0/extjs-build/examples"
 			}, {
 				"name": "Sencha Blog",
