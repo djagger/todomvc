@@ -39,7 +39,26 @@
             <target name="-after-build"/>
     -->
     <target name="-before-build">
-        <copy file="${workspace.dir}/../../../assets/base.css" tofile="${build.dir}/base.scss"/>
+        <concat destfile="${build.dir}/_base.scss">
+            <header>@charset "utf-8";
+            </header>
+            <file file="${workspace.dir}/../../../assets/base.css"/>
+        </concat>
+    </target>
+
+    <target name="-before-sass">
+        <concat destfile="${app.out.scss}.tmp">
+            <header>@charset "utf-8";
+            </header>
+            <file file="${app.out.scss}"/>
+        </concat>
+        <move file="${app.out.scss}.tmp" tofile="${app.out.scss}"/>
+        <concat destfile="${app.example.scss}.tmp">
+            <header>@charset "utf-8";
+            </header>
+            <file file="${app.example.scss}"/>
+        </concat>
+        <move file="${app.example.scss}.tmp" tofile="${app.example.scss}"/>
     </target>
 
     <target name="-after-build">
