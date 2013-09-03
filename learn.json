@@ -829,7 +829,8 @@
 		"homepage": "sencha.com/products/extjs",
 		"examples": [{
 			"name": "Architecture Example",
-			"url": "labs/architecture-examples/extjs"
+			"url": "architecture-examples/extjs",
+			"source_url": "architecture-examples/extjs/src"
 		}],
 		"link_groups": [{
 			"heading": "Official Resources",

@@ -27,7 +27,7 @@
 
             <target name="-before-init"/>
             <target name="-after-init"/>
-        
+
         The "page" target performs the call to Sencha Cmd to build the 'all-classes.js' file.
 
             <target name="-before-page"/>
@@ -38,5 +38,19 @@
             <target name="-before-build"/>
             <target name="-after-build"/>
     -->
+    <target name="-before-build">
+        <copy file="${workspace.dir}/../../../assets/base.css" tofile="${build.dir}/base.scss"/>
+    </target>
 
+    <target name="-after-build">
+        <copy todir="${workspace.dir}/../">
+            <fileset dir="${build.dir}">
+                <include name="${build.classes.name}"/>
+                <include name="${app.page.name}"/>
+                <include name="resources/${app.out.base}.css"/>
+                <!--We don't need framework components images.-->
+                <include name="resources/images/*.png"/>
+            </fileset>
+        </copy>
+    </target>
 </project>
