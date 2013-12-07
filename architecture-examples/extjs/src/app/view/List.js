@@ -15,7 +15,6 @@ Ext.define('Todo.view.List', {
 	},
 	columns: [
 		{
-			text: 'Completed',
 			dataIndex: 'completed',
 			tdCls: 'checkcolumn',
 			renderer: function (value, meta) {
@@ -27,7 +26,6 @@ Ext.define('Todo.view.List', {
 			width: 44
 		},
 		{
-			text: 'Title',
 			dataIndex: 'title',
 			tdCls: 'todo-text',
 			renderer: function (value, meta, todo) {
@@ -44,7 +42,6 @@ Ext.define('Todo.view.List', {
 			}
 		},
 		{
-			text: 'Delete',
 			width: 40,
 			align: 'center',
 			tdCls: 'delete-icon',

@@ -4,6 +4,7 @@
 				0 25px 50px 0 rgba(0, 0, 0, 0.15);
 	border-top-left-radius: 2px;
 	border-top-right-radius: 2px;
+	border:1px #ccc solid;
 	.x-grid-header-ct {
 		border: none;
 	}
@@ -40,6 +41,7 @@
 		padding-left:4px;
 		text-align: center;
 		.x-grid-cell-inner {
+			padding: 0;
 			display: inline-block;
 			width: auto;
 			height: auto;
@@ -63,6 +65,7 @@
 	margin: 0;
 	border: 1px solid #999;
 	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+	outline: none;
 	@include experimental(font-smoothing, antialiased);
 }
 

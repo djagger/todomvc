@@ -6,7 +6,7 @@ Ext.define('Todo.view.Viewport', {
 		'Todo.view.BottomBar'
 	],
 	defaults: {
-		width: 550
+		width: 552
 	},
 	items: [
 		{
@@ -18,6 +18,7 @@ Ext.define('Todo.view.Viewport', {
 		},
 		{
 			xtype: 'todo_list',
+			border:1,
 			dockedItems: [
 				{xtype: 'todo_topbar', dock: 'top'}
 			]

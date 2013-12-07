@@ -28,7 +28,6 @@ Ext.define('Todo.controller.TopBar', {
 		if (event.getKey() == event.ENTER) {
 			var value = Ext.String.trim(field.getValue());
 			if (!Ext.isEmpty(value)) {
-				field.blur();
 				field.setValue('');
 				this.getTasksStore().add({
 					title: value,
