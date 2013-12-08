@@ -38,15 +38,18 @@
             <target name="-before-build"/>
             <target name="-after-build"/>
     -->
-    <target name="-before-build">
-        <concat destfile="${build.dir}/_base.scss">
+    <target name="-before-sass">
+        <concat destfile="${app.sass.etcpath}/../_base.scss">
             <header>@charset "utf-8";
             </header>
             <file file="${workspace.dir}/../../../assets/base.css"/>
         </concat>
     </target>
+    <target name="-after-sass">
+        <delete file="${app.sass.etcpath}/../_base.scss"/>
+    </target>
 
-    <target name="-before-sass">
+    <!--<target name="-before-sass">
         <concat destfile="${app.out.scss}.tmp">
             <header>@charset "utf-8";
             </header>
@@ -59,7 +62,7 @@
             <file file="${app.example.scss}"/>
         </concat>
         <move file="${app.example.scss}.tmp" tofile="${app.example.scss}"/>
-    </target>
+    </target>-->
 
     <target name="-after-build">
         <copy todir="${workspace.dir}/../">

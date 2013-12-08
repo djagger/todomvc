@@ -18,14 +18,10 @@ Ext.define('Todo.controller.List', {
 			this.getTasksStore().remove(record);
 		}
 		if (event.getTarget('.checkcolumn')) {
-			/*var completed = !record.get('completed');
-			record.beginEdit();*/
 			record.set('completed', !record.get('completed'));
-			/*record.endEdit(true);
-			record.save();*/
 		}
 	},
-	//In-place label edit.
+	//After in-place label edit.
 	onEdit: function (editor, data) {
 		var value = Ext.String.trim(data.value);
 		if (Ext.isEmpty(value)) {

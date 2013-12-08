@@ -17,7 +17,7 @@ Ext.define('Todo.controller.TopBar', {
 			},
 			controller:{
 				"#BottomBar": {
-					countschange: this.remarkCheckbox
+					countschange: this.onCountsChange
 				}
 			}
 		});
@@ -42,8 +42,9 @@ Ext.define('Todo.controller.TopBar', {
 			this.getTasksStore().bulkComplete(checked);
 		}
 	},
-	remarkCheckbox: function (total, completed) {
+	onCountsChange: function (total, completed) {
 		//TODO: Post a bug about suspended events dispatching by EventDomain.
+		//Without suspending, we will reset all when user unchecks only one.
 		this.dontCheckAll = true;
 		this.getCheckAll().setValue((total == completed) && (total > 0));
 		this.dontCheckAll = false;

@@ -1,6 +1,6 @@
 # To build the app:
-1. Download and install the ExtJS framework to "ext" dir under this one (http://www.sencha.com/products/extjs).
-1. Download and install Sencha CMD (http://www.sencha.com/products/sencha-cmd).
+1. Download and install the ExtJS framework to "ext" dir under this one (http://www.sencha.com/products/extjs) (v4.2.1).
+1. Download and install Sencha CMD (http://www.sencha.com/products/sencha-cmd) (v.4.0.1).
 1. Make sure you have ruby in the system with the latest sass and compass gems.
 1. cd to this directory.
 1. Run sencha app build [-e testing|production].

@@ -7,14 +7,14 @@ Ext.define('Todo.view.BottomBar', {
 	layout: 'auto',
 	items: [
 		{
-			xtype: 'box',
+			xtype: 'component',
 			cls: 'counts',
 			itemId: 'uncompleted',
-			tpl: '<strong>{count}</strong> item{[values.count == 1 ? "" : "s"]} left',
+			tpl: '<strong>{count}</strong> item<tpl if="count !== 1">s</tpl> left',
 			data: {count: 0}
 		},
 		{
-			xtype: 'box',
+			xtype: 'component',
 			itemId: 'filters',
 			autoEl: {
 				tag: 'div',
@@ -40,8 +40,28 @@ Ext.define('Todo.view.BottomBar', {
 			}
 		},
 		{
+			//Actually button don't use this config.
+			//But we can use it in different place to update button's text.
 			textTpl: Ext.create('Ext.Template', 'Clear completed ({count})'),
 			itemId: 'completed'
 		}
-	]
+	],
+	currentTriggerCls: 'selected',
+	filterTriggers:null,
+	getFilterTriggers:function() {
+		if (!this.filterTriggers) {
+			this.filterTriggers = this.getComponent('filters').getEl().select('a');
+		}
+		return this.filterTriggers;
+	},
+	updateTriggersState:function(path) {
+		var cls = this.currentTriggerCls;
+		this.getFilterTriggers().each(function (el) {
+			if (el.dom.hash != '#' + path) {
+				el.removeCls(cls);
+			} else {
+				el.addCls(cls);
+			}
+		});
+	}
 });

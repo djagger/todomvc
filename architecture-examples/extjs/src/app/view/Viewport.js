@@ -10,7 +10,7 @@ Ext.define('Todo.view.Viewport', {
 	},
 	items: [
 		{
-			xtype: 'box',
+			xtype: 'component',
 			autoEl: {
 				tag: 'h1',
 				html: 'todos'
@@ -25,7 +25,9 @@ Ext.define('Todo.view.Viewport', {
 		},
 		{xtype: 'todo_bottombar'},
 		{
-			xtype: 'box',
+			xtype: 'component',
+			//NEVER specify id for component.
+			//...unless you want to use some external thing (like assets/base.css here).
 			id:'info',
 			autoEl:'footer',
 			html:[

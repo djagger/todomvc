@@ -43,6 +43,7 @@ Ext.define('Todo.view.List', {
 		},
 		{
 			width: 40,
+			itemId: 'delete',
 			align: 'center',
 			tdCls: 'delete-icon',
 			renderer:function() {

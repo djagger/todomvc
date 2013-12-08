@@ -17,32 +17,34 @@ Ext.define('Todo.controller.BottomBar', {
 			store: {
 				"#Tasks": {
 					//No need in listen to add, remove, etc, because we have immediate sync.
-					datachanged: this.doRecount,
-					filterchange: this.maybeDisable
+					datachanged: this.onRecordsChanged,
+					filterchange: this.onFilterChange
 				}
 			}
 		});
 	},
 
-	doRecount: function (store) {
+	onRecordsChanged: function (store) {
 		var total = 0, completed = 0;
+		//this is the only iterator, that has knowledge about filtered out records.
 		store.queryBy(function (record) {
 			total++;
 			completed += record.get('completed');
 		});
-		this.onCountUpdate(total, completed);
+		this.updateCounts(total, completed);
 	},
 
 	onClearButtonClick: function () {
 		var records,
 			store = this.getTasksStore();
 
+		//Only queryBy takes filtered out records in account.
 		records = store.queryBy(function (record) {
 			return record.get('completed');
 		}).getRange();
 		store.remove(records);
 	},
-	onCountUpdate: function (total, completed) {
+	updateCounts: function (total, completed) {
 		var completedButton = this.getButtonCompleted(),
 			left = total - completed;
 		this.getBottomBar().setVisible(!!total);
@@ -55,7 +57,7 @@ Ext.define('Todo.controller.BottomBar', {
 		this.fireEvent('countschange', total, completed);
 	},
 
-	maybeDisable:function(store) {
+	onFilterChange:function(store) {
 		var button = this.getButtonCompleted(),
 			filter = store.filters.get('completed');
 		//Disable because: a) user doesn't see what he deletes and b) problem with sync :).

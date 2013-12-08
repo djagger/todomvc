@@ -4,7 +4,7 @@ Ext.define('Todo.controller.History', {
 	stores: ['Tasks'],
 	refs: [
 		{ref: 'buttonCompleted', selector: 'todo_bottombar #completed'},
-		{ref: 'filters', selector: 'todo_bottombar #filters'}
+		{ref: 'footer', selector: 'todo_bottombar'}
 	],
 
 	onLaunch: function () {
@@ -14,41 +14,20 @@ Ext.define('Todo.controller.History', {
 		});
 		Ext.util.History.on('change', this.onHistoryChange, this);
 	},
-	currentCls: 'selected',
 	onHistoryChange: function (token) {
-		var filter = null,
-			store = this.getTasksStore(),
-			els = this.getFilters().getEl().select('a'),
-			cls = this.currentCls,
-			button = this.getButtonCompleted();
+		var completed = null;
 		token = token || '/';
 		switch (token) {
 			case '/active':
-				filter = false;
+				completed = false;
 				break;
 			case '/completed':
-				filter = true;
+				completed = true;
 				break;
 		}
 
-		if (filter !== null) {
-			store.filter({
-				id: 'completed',
-				property: 'completed',
-				operator: '=',
-				value: filter
-			});
-		} else {
-			store.removeFilter('completed');
-		}
+		this.getTasksStore().filterCompleted(completed);
 
-		//Toggle classes on links.
-		els.each(function (el) {
-			if (el.dom.hash != '#' + token) {
-				el.removeCls(cls);
-			} else {
-				el.addCls(cls);
-			}
-		});
+		this.getFooter().updateTriggersState(token);
 	}
 });
